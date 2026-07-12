@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, type ViewProps } from 'react-native';
 
 import { SafeBottomView } from '@/src/components/layout/SafeBottomView';
 import { useSacredTheme } from '@/src/hooks/useSacredTheme';
@@ -9,6 +9,7 @@ type PrayerNavigationProps = {
   nextLabel: string;
   onPrevious: () => void;
   onNext: () => void;
+  onLayout?: ViewProps['onLayout'];
 };
 
 export function PrayerNavigation({
@@ -17,14 +18,17 @@ export function PrayerNavigation({
   nextLabel,
   onPrevious,
   onNext,
+  onLayout,
 }: PrayerNavigationProps) {
   const theme = useSacredTheme();
 
   return (
     <SafeBottomView
+      onLayout={onLayout}
       style={[
         styles.root,
         {
+          backgroundColor: theme.colors.background,
           borderTopColor: theme.colors.rule,
         },
       ]}>
@@ -54,12 +58,16 @@ export function PrayerNavigation({
 
 const styles = StyleSheet.create({
   root: {
+    bottom: 0,
     borderTopWidth: 1,
     flexGrow: 0,
     flexShrink: 0,
+    left: 0,
     paddingHorizontal: 24,
     paddingBottom: 12,
     paddingTop: 12,
+    position: 'absolute',
+    right: 0,
   },
   row: {
     alignItems: 'center',

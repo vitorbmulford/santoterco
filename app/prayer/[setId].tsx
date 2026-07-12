@@ -28,6 +28,7 @@ export default function PrayerScreen() {
   const rawSetId = typeof params.setId === 'string' ? params.setId : '';
   const targetId: RosaryTargetId = isRosaryTargetId(rawSetId) ? rawSetId : 'joyful';
   const [showIndex, setShowIndex] = useState(false);
+  const [navigationHeight, setNavigationHeight] = useState(0);
   const session = usePrayerSession(targetId, {
     stepIndex: Math.max(0, readNumber(params.step, 0)),
     repeatIndex: Math.max(0, readNumber(params.repeat, 0)),
@@ -127,7 +128,7 @@ export default function PrayerScreen() {
         <>
           <ScrollView
             style={styles.fill}
-            contentContainerStyle={styles.prayerContent}
+            contentContainerStyle={[styles.prayerContent, { paddingBottom: navigationHeight }]}
             showsVerticalScrollIndicator={false}>
             <PrayerStepView step={currentStep} progress={progress} onAdvance={next} />
           </ScrollView>
@@ -142,6 +143,7 @@ export default function PrayerScreen() {
             nextLabel={session.atEnd ? 'Concluir' : 'Seguinte'}
             onPrevious={session.goPrevious}
             onNext={next}
+            onLayout={({ nativeEvent }) => setNavigationHeight(nativeEvent.layout.height)}
           />
         </>
       )}
