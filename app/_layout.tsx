@@ -1,24 +1,51 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { useSacredThemeController } from '@/src/hooks/useSacredTheme';
+import { SacredThemeProvider } from '@/src/theme/SacredThemeProvider';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  return (
+    <SacredThemeProvider>
+      <RootNavigator />
+    </SacredThemeProvider>
+  );
+}
+
+function RootNavigator() {
+  const { mode, theme } = useSacredThemeController();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+    <ThemeProvider
+      value={{
+        dark: false,
+        colors: {
+          primary: theme.colors.wine,
+          background: theme.colors.background,
+          card: theme.colors.background,
+          text: theme.colors.ink,
+          border: theme.colors.rule,
+          notification: theme.colors.gold,
+        },
+        fonts: {
+          regular: { fontFamily: theme.fonts.body, fontWeight: '400' },
+          medium: { fontFamily: theme.fonts.body, fontWeight: '500' },
+          bold: { fontFamily: theme.fonts.body, fontWeight: '700' },
+          heavy: { fontFamily: theme.fonts.body, fontWeight: '700' },
+        },
+      }}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="gallery/index" />
+        <Stack.Screen name="gallery/[categoryId]" />
+        <Stack.Screen name="gallery/artwork/[artworkId]" />
+        <Stack.Screen name="mysteries/index" />
+        <Stack.Screen name="mysteries/[setId]" />
+        <Stack.Screen name="prayer/[setId]" />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style={mode === 'dark' ? 'light' : 'dark'} />
     </ThemeProvider>
   );
 }
