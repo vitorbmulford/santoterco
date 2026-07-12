@@ -1,6 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { HeaderAction, ScreenHeader } from '@/src/components/layout/ScreenHeader';
 import { SacredScreen } from '@/src/components/layout/SacredScreen';
@@ -22,6 +23,7 @@ const readNumber = (value: string | string[] | undefined, fallback: number) => {
 
 export default function PrayerScreen() {
   const theme = useSacredTheme();
+  const insets = useSafeAreaInsets();
   const params = useLocalSearchParams<{ setId?: string; step?: string; repeat?: string }>();
   const rawSetId = typeof params.setId === 'string' ? params.setId : '';
   const targetId: RosaryTargetId = isRosaryTargetId(rawSetId) ? rawSetId : 'joyful';
@@ -68,7 +70,9 @@ export default function PrayerScreen() {
       {!showIndex ? <PrayerProgress value={session.ratio} /> : null}
 
       {showIndex ? (
-        <ScrollView contentContainerStyle={styles.indexContent} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          contentContainerStyle={[styles.indexContent, { paddingBottom: Math.max(insets.bottom, 12) }]}
+          showsVerticalScrollIndicator={false}>
           <Text style={[styles.indexHelp, { color: theme.colors.muted, fontFamily: theme.fonts.body }]}>
             Toque em qualquer etapa para ir diretamente a ela.
           </Text>
@@ -150,7 +154,6 @@ const styles = StyleSheet.create({
   },
   indexContent: {
     paddingHorizontal: 26,
-    paddingBottom: 30,
   },
   indexHelp: {
     fontSize: 14,

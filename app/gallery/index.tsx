@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   list: {
-    paddingBottom: 24,
+    paddingBottom: 0,
   },
   endRule: {
     height: 1,

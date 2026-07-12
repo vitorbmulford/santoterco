@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useSacredTheme } from '@/src/hooks/useSacredTheme';
 
@@ -18,9 +19,17 @@ export function PrayerNavigation({
   onNext,
 }: PrayerNavigationProps) {
   const theme = useSacredTheme();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.root, { borderTopColor: theme.colors.rule }]}>
+    <View
+      style={[
+        styles.root,
+        {
+          borderTopColor: theme.colors.rule,
+          paddingBottom: Math.max(insets.bottom, 12),
+        },
+      ]}>
       <View style={styles.row}>
         <Pressable
           accessibilityRole="button"
@@ -50,7 +59,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     paddingHorizontal: 24,
     paddingTop: 12,
-    paddingBottom: 18,
   },
   row: {
     alignItems: 'center',
