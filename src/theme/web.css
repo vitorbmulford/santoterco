@@ -35,6 +35,14 @@ body {
 
 #root {
   display: flex;
-  flex: 1 1 auto;
+  bottom: 0;
+  flex: none;
+  height: auto;
+  left: 0;
+  max-height: none;
   overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: auto;
 }

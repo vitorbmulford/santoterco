@@ -176,7 +176,8 @@ const styles = StyleSheet.create({
   },
   actions: {
     gap: 10,
-    marginTop: 18,
+    marginTop: 'auto',
+    paddingTop: 18,
     width: '100%',
   },
 });

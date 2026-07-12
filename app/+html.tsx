@@ -91,9 +91,17 @@ export default function Root({ children }: PropsWithChildren) {
               }
 
               #root {
+                bottom: 0;
                 display: flex;
-                flex: 1 1 auto;
+                flex: none;
+                height: auto;
+                left: 0;
+                max-height: none;
                 overflow: hidden;
+                position: fixed;
+                right: 0;
+                top: 0;
+                width: auto;
               }
             `,
           }}
