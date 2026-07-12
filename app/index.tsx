@@ -87,11 +87,11 @@ export default function HomeScreen() {
             }>
             Rezar o Terço
           </SacredButton>
-          <SacredButton variant="plain" onPress={() => router.push('/gallery' as any)}>
-            Galeria de Arte Sacra
-          </SacredButton>
           <SacredButton variant="plain" onPress={() => router.push('/mysteries' as any)}>
             Escolher mistério
+          </SacredButton>
+          <SacredButton variant="plain" onPress={() => router.push('/gallery' as any)}>
+            Galeria de Arte Sacra
           </SacredButton>
         </View>
       </View>

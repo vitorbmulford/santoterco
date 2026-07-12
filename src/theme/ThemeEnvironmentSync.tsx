@@ -30,7 +30,6 @@ export function ThemeEnvironmentSync() {
 
     if (appRoot) {
       appRoot.style.backgroundColor = backgroundColor;
-      appRoot.style.minHeight = '100%';
     }
 
     document
