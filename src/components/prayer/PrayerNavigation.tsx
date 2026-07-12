@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { SafeBottomView } from '@/src/components/layout/SafeBottomView';
 import { useSacredTheme } from '@/src/hooks/useSacredTheme';
 
 type PrayerNavigationProps = {
@@ -21,8 +21,7 @@ export function PrayerNavigation({
   const theme = useSacredTheme();
 
   return (
-    <SafeAreaView
-      edges={['bottom']}
+    <SafeBottomView
       style={[
         styles.root,
         {
@@ -49,7 +48,7 @@ export function PrayerNavigation({
           </Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </SafeBottomView>
   );
 }
 
