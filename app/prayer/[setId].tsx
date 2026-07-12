@@ -71,6 +71,7 @@ export default function PrayerScreen() {
 
       {showIndex ? (
         <ScrollView
+          style={styles.fill}
           contentContainerStyle={[styles.indexContent, { paddingBottom: Math.max(insets.bottom, 12) }]}
           showsVerticalScrollIndicator={false}>
           <Text style={[styles.indexHelp, { color: theme.colors.muted, fontFamily: theme.fonts.body }]}>
@@ -124,7 +125,10 @@ export default function PrayerScreen() {
         </ScrollView>
       ) : (
         <>
-          <ScrollView contentContainerStyle={styles.prayerContent} showsVerticalScrollIndicator={false}>
+          <ScrollView
+            style={styles.fill}
+            contentContainerStyle={styles.prayerContent}
+            showsVerticalScrollIndicator={false}>
             <PrayerStepView step={currentStep} progress={progress} onAdvance={next} />
           </ScrollView>
           {repeated ? (
@@ -146,6 +150,10 @@ export default function PrayerScreen() {
 }
 
 const styles = StyleSheet.create({
+  fill: {
+    flex: 1,
+    minHeight: 0,
+  },
   prayerContent: {
     flexGrow: 1,
   },
