@@ -29,6 +29,7 @@
     "web": {
       "output": "static",
       "display": "standalone",
+      "barStyle": "black-translucent",
       "backgroundColor": "#F1E7D3",
       "themeColor": "#0F1B33",
       "favicon": "./assets/images/complementares/01-abertura-cristo-pantocrator.jpg"

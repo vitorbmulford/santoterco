@@ -1,7 +1,7 @@
 import { type ViewProps, type ViewStyle, View } from 'react-native';
 
 const safeBottomStyle = {
-  paddingBottom: 'max(12px, env(safe-area-inset-bottom, 0px))',
+  paddingBottom: 0,
 } as unknown as ViewStyle;
 
 export function SafeBottomView({ style, ...props }: ViewProps) {
