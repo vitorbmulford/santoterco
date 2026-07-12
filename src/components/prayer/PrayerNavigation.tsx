@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useSacredTheme } from '@/src/hooks/useSacredTheme';
 
@@ -19,15 +19,14 @@ export function PrayerNavigation({
   onNext,
 }: PrayerNavigationProps) {
   const theme = useSacredTheme();
-  const insets = useSafeAreaInsets();
 
   return (
-    <View
+    <SafeAreaView
+      edges={['bottom']}
       style={[
         styles.root,
         {
           borderTopColor: theme.colors.rule,
-          paddingBottom: Math.max(insets.bottom, 12),
         },
       ]}>
       <View style={styles.row}>
@@ -50,14 +49,17 @@ export function PrayerNavigation({
           </Text>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   root: {
     borderTopWidth: 1,
+    flexGrow: 0,
+    flexShrink: 0,
     paddingHorizontal: 24,
+    paddingBottom: 12,
     paddingTop: 12,
   },
   row: {

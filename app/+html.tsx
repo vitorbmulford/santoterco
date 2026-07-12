@@ -39,41 +39,25 @@ export default function Root({ children }: PropsWithChildren) {
                 }
               }
 
-              html {
+              html,
+              body,
+              #root {
                 height: 100%;
+                min-height: 0;
+                width: 100%;
                 background-color: var(--app-background);
               }
 
               body {
                 display: flex;
                 margin: 0;
-                min-height: 100vh;
-                min-height: -webkit-fill-available;
-                width: 100%;
-                background-color: var(--app-background);
+                overflow: hidden;
               }
 
               #root {
                 display: flex;
-                flex: 1;
-                min-height: 100vh;
-                min-height: -webkit-fill-available;
-                width: 100%;
-                background-color: var(--app-background);
-              }
-
-              @supports (height: 100dvh) {
-                body,
-                #root {
-                  min-height: 100dvh;
-                }
-              }
-
-              @media (display-mode: standalone) {
-                body,
-                #root {
-                  min-height: 100dvh;
-                }
+                flex: 1 1 auto;
+                overflow: hidden;
               }
             `,
           }}
