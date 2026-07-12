@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useSacredTheme } from '@/src/hooks/useSacredTheme';
@@ -13,9 +13,10 @@ type SacredScreenProps = {
 export function SacredScreen({ children, scroll = true, padded = true }: SacredScreenProps) {
   const theme = useSacredTheme();
   const insets = useSafeAreaInsets();
+  const bottomPadding = Platform.OS === 'web' ? 0 : Math.max(insets.bottom, 12);
   const contentStyle = [
     scroll
-      ? [styles.scrollContent, { paddingBottom: Math.max(insets.bottom, 12) }]
+      ? [styles.scrollContent, { paddingBottom: bottomPadding }]
       : styles.fixedContent,
     padded && { paddingHorizontal: theme.spacing.screen },
   ];

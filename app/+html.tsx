@@ -34,10 +34,19 @@ export default function Root({ children }: PropsWithChildren) {
                     : 'light';
                 var background = mode === 'dark' ? '${DARK_BACKGROUND}' : '${LIGHT_BACKGROUND}';
                 var root = document.documentElement;
+                var syncViewportHeight = function () {
+                  var viewportHeight = window.visualViewport
+                    ? window.visualViewport.height
+                    : window.innerHeight;
+                  root.style.setProperty('--app-viewport-height', viewportHeight + 'px');
+                };
                 root.style.setProperty('--app-background', background);
                 root.style.backgroundColor = background;
                 root.style.colorScheme = mode;
                 document.querySelector('meta[name="theme-color"]')?.setAttribute('content', background);
+                syncViewportHeight();
+                window.addEventListener('resize', syncViewportHeight);
+                window.visualViewport?.addEventListener('resize', syncViewportHeight);
               } catch (_) {}
             })();`,
           }}
@@ -62,16 +71,23 @@ export default function Root({ children }: PropsWithChildren) {
               html,
               body,
               #root {
-                height: 100%;
+                height: var(--app-viewport-height, 100%);
+                max-height: var(--app-viewport-height, 100%);
                 min-height: 0;
                 width: 100%;
                 background-color: var(--app-background);
               }
 
+              html {
+                overflow: hidden;
+              }
+
               body {
                 display: flex;
+                inset: 0;
                 margin: 0;
                 overflow: hidden;
+                position: fixed;
               }
 
               #root {

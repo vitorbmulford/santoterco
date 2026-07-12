@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { HeaderAction, ScreenHeader } from '@/src/components/layout/ScreenHeader';
@@ -73,7 +73,10 @@ export default function PrayerScreen() {
       {showIndex ? (
         <ScrollView
           style={styles.fill}
-          contentContainerStyle={[styles.indexContent, { paddingBottom: Math.max(insets.bottom, 12) }]}
+          contentContainerStyle={[
+            styles.indexContent,
+            { paddingBottom: Platform.OS === 'web' ? 0 : Math.max(insets.bottom, 12) },
+          ]}
           showsVerticalScrollIndicator={false}>
           <Text style={[styles.indexHelp, { color: theme.colors.muted, fontFamily: theme.fonts.body }]}>
             Toque em qualquer etapa para ir diretamente a ela.
