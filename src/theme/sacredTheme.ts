@@ -15,7 +15,7 @@ const palette = {
 };
 
 const darkPalette = {
-  parchment: '#0F1B30',
+  parchment: '#0F1B33',
   parchmentDeep: '#182740',
   ink: '#ECE2CB',
   wine: '#b11f45',

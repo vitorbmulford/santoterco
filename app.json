@@ -4,6 +4,7 @@
     "slug": "santo-terco",
     "version": "1.0.0",
     "orientation": "portrait",
+    "backgroundColor": "#F1E7D3",
     "icon": "./assets/images/complementares/01-abertura-cristo-pantocrator.jpg",
     "scheme": "santoterco",
     "userInterfaceStyle": "automatic",
@@ -27,6 +28,9 @@
     },
     "web": {
       "output": "static",
+      "display": "standalone",
+      "backgroundColor": "#F1E7D3",
+      "themeColor": "#0F1B33",
       "favicon": "./assets/images/complementares/01-abertura-cristo-pantocrator.jpg"
     },
     "plugins": [
@@ -37,9 +41,9 @@
           "image": "./assets/images/complementares/01-abertura-cristo-pantocrator.jpg",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#F1E7D3",
           "dark": {
-            "backgroundColor": "#000000"
+            "backgroundColor": "#0F1B33"
           }
         }
       ]

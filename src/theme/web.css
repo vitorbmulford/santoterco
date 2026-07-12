@@ -1,0 +1,27 @@
+:root {
+  --app-background: #f1e7d3;
+  background-color: var(--app-background);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-background: #0f1b33;
+    color-scheme: dark;
+  }
+}
+
+html,
+body {
+  min-height: 100%;
+  background-color: var(--app-background);
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100%;
+  background-color: var(--app-background);
+}
